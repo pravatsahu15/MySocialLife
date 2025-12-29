@@ -32,6 +32,8 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Background elements for creativity */
@@ -79,6 +81,8 @@ body {
     margin: 0 auto;
     padding: 30px;
     position: relative;
+    flex: 1;
+    width: 100%;
 }
 
 /* Creative header section */
@@ -432,14 +436,28 @@ body {
     font-weight: 500;
 }
 
-/* Footer */
+/* Footer - FIXED TO BOTTOM */
 .footer {
     text-align: center;
-    padding: 30px;
+    padding: 25px 30px;
     color: var(--text-gray);
-    font-size: 14px;
+    font-size: 15px;
     border-top: 1px solid var(--border-color);
-    margin-top: 40px;
+    background-color: var(--bg-card);
+    width: 100%;
+    margin-top: auto; /* This pushes footer to bottom */
+    position: relative;
+    z-index: 10;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
 }
 
 /* Click hint animation */
@@ -507,6 +525,15 @@ body {
     .sections-container {
         flex-direction: column;
     }
+    
+    .container {
+        padding: 20px;
+    }
+    
+    .footer {
+        padding: 20px;
+        font-size: 14px;
+    }
 }
 </style>
 </head>
@@ -537,17 +564,17 @@ body {
                     <div class="detail-box">
                         <div class="detail-icon">📍</div>
                         <div class="detail-label">Location</div>
-                        <div class="detail-value">Kharagpur, IN</div>
+                        <div class="detail-value">Kharagpur, INDIA</div>
                     </div>
                     <div class="detail-box">
                         <div class="detail-icon">🎓</div>
                         <div class="detail-label">Education</div>
-                        <div class="detail-value">BCA Student</div>
+                        <div class="detail-value">Pursuing BCA</div>
                     </div>
                     <div class="detail-box">
                         <div class="detail-icon">💻</div>
                         <div class="detail-label">Focus</div>
-                        <div class="detail-value">Web Development</div>
+                        <div class="detail-value">Data Scientist</div>
                     </div>
                     <div class="detail-box">
                         <div class="detail-icon">🌟</div>
@@ -587,8 +614,8 @@ body {
                     <div class="card-content">
                         <div class="hobbies-grid">
                             <div class="hobby-item">
-                                <div class="hobby-name">🏸 Sports & Fitness</div>
-                                <div class="hobby-desc">Channeling energy through badminton and physical activities for mental clarity and wellbeing</div>
+                                <div class="hobby-name">🏏 Sports</div>
+                                <div class="hobby-desc">Channeling energy through physical activities for mental clarity and wellbeing</div>
                             </div>
                             <div class="hobby-item">
                                 <div class="hobby-name">✈️ Travel Exploration</div>
@@ -601,6 +628,10 @@ body {
                             <div class="hobby-item">
                                 <div class="hobby-name">🎵 Musical Expression</div>
                                 <div class="hobby-desc">Using music as a medium for reflection and creative expression</div>
+                            </div>
+                            <div class="hobby-item">
+                                <div class="hobby-name">🏍️ Bike Riding</div>
+                                <div class="hobby-desc">Exhaling all worries of life by turning the thortle</div>
                             </div>
                         </div>
                     </div>
@@ -618,14 +649,12 @@ body {
                     <div class="card-content">
                         <div class="interests-container">
                             <div class="interest-tag">Web Development</div>
-                            <div class="interest-tag">UI/UX Design</div>
                             <div class="interest-tag">Photography</div>
                             <div class="interest-tag">Outdoor Adventures</div>
-                            <div class="interest-tag">Motorcycle Culture</div>
+                            <div class="interest-tag">Bike Rides</div>
                             <div class="interest-tag">Spiritual Growth</div>
-                            <div class="interest-tag">Music Discovery</div>
+                            <div class="interest-tag">Music Listener</div>
                             <div class="interest-tag">Personal Development</div>
-                            <div class="interest-tag">Tech Innovation</div>
                             <div class="interest-tag">Cultural Exploration</div>
                         </div>
                     </div>
@@ -661,11 +690,11 @@ body {
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Footer -->
-        <div class="footer">
-            © 2025 Pravat Sahu | Creative Portfolio | Crafted with purpose
-        </div>
+    <!-- Footer - Now at the very bottom of the page -->
+    <div class="footer">
+        Pravat Sahu | Portfolio | Creative Intro
     </div>
 
     <script>
