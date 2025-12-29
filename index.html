@@ -2,541 +2,710 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Pravat Sahu | Personal Space</title>
+<title>Pravat Sahu | Creative Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Creative portfolio of Pravat Sahu - Student, Traveler, and Developer">
 
 <style>
 :root {
-    --neon-blue: #38bdf8;
-    --neon-purple: #a855f7;
-    --neon-pink: #ec4899;
-    --neon-green: #22c55e;
-    --neon-orange: #f97316;
-    --bg-dark: #020617;
+    --primary-blue: #2563eb;
+    --dark-blue: #1e40af;
+    --light-blue: #3b82f6;
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --accent-blue: rgba(37, 99, 235, 0.1);
+    --text-light: #f8fafc;
+    --text-gray: #cbd5e1;
+    --border-color: #334155;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-    background: radial-gradient(circle at top right, #1e1b4b, #020617, #000);
-    color: #e5e7eb;
-    padding: 30px;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
     min-height: 100vh;
-}
-
-/* Layout */
-.dashboard {
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-}
-
-/* Neon Card */
-.card {
-    background: linear-gradient(135deg, #0a0a1f, #000);
-    border-radius: 20px;
-    padding: 25px;
+    overflow-x: hidden;
     position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: 22px;
-    background: linear-gradient(90deg,
-        var(--neon-blue),
-        var(--neon-purple),
-        var(--neon-pink));
+/* Background elements for creativity */
+.bg-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
-    filter: blur(8px);
-    opacity: 0.2;
-    transition: opacity 0.4s;
+    pointer-events: none;
 }
 
-.card:hover::before {
-    opacity: 0.4;
-}
-
-.card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow:
-        0 0 20px rgba(56,189,248,0.3),
-        0 0 40px rgba(168,85,247,0.2);
-}
-
-/* Profile - Expandable */
-.profile {
-    text-align: center;
-    cursor: pointer;
-}
-
-.profile:hover {
-    transform: scale(1.02);
-}
-
-.profile img {
-    width: 100px;
-    height: 100px;
+.bg-circle {
+    position: absolute;
     border-radius: 50%;
-    border: 3px solid var(--neon-blue);
-    box-shadow: 
-        0 0 15px rgba(56,189,248,0.4);
-    margin-bottom: 12px;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    object-fit: cover;
-    object-position: center;
+    background: radial-gradient(circle, var(--primary-blue) 0%, transparent 70%);
+    opacity: 0.05;
 }
 
-.profile.expanded img {
+.circle-1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    right: -100px;
+}
+
+.circle-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    left: -50px;
+}
+
+.circle-3 {
     width: 200px;
     height: 200px;
-    border-width: 4px;
-    box-shadow: 
-        0 0 25px rgba(56,189,248,0.6);
+    top: 50%;
+    left: 10%;
 }
 
-.profile h1 {
-    color: var(--neon-blue);
-    text-shadow: 0 0 8px rgba(56,189,248,0.4);
-    font-size: 24px;
-    margin-bottom: 8px;
-    transition: all 0.3s;
+/* Main container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+    position: relative;
 }
 
-.profile.expanded h1 {
-    font-size: 32px;
-}
-
-.profile p {
-    font-size: 14px;
-    color: #cbd5e1;
-    margin: 5px 0;
-    transition: all 0.3s;
-}
-
-.profile.expanded p {
-    font-size: 16px;
-    margin: 8px 0;
-}
-
-.profile .tagline {
-    color: var(--neon-purple);
-    font-style: italic;
-    margin-top: 10px;
-}
-
-/* Profile Details - Hidden by Default */
-.profile-details {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-top: 15px;
-}
-
-.profile.expanded .profile-details {
-    max-height: 500px;
-    opacity: 1;
-}
-
-.profile-info {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(56, 189, 248, 0.3);
-}
-
-.info-item {
+/* Creative header section */
+.creative-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 12px 0;
-    font-size: 15px;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 40px 0;
+    position: relative;
 }
 
-.info-icon {
-    font-size: 20px;
+.profile-image-container {
+    position: relative;
+    flex-shrink: 0;
 }
 
-.info-label {
-    color: #94a3b8;
+.profile-img {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 5px solid var(--primary-blue);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease;
 }
 
-.info-value {
-    color: var(--neon-blue);
-    font-weight: 600;
+.profile-img:hover {
+    transform: scale(1.05) rotate(5deg);
 }
 
-/* Card Header */
+.image-frame {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border: 2px dashed var(--light-blue);
+    border-radius: 50%;
+    top: -10px;
+    left: -10px;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Header text content */
+.header-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.name-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 22px;
+    color: var(--text-gray);
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.subtitle::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-blue);
+    border-radius: 50%;
+}
+
+.tagline {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-gray);
+    max-width: 600px;
+    line-height: 1.6;
+    padding: 20px;
+    border-left: 3px solid var(--primary-blue);
+    background-color: rgba(37, 99, 235, 0.05);
+    border-radius: 0 10px 10px 0;
+}
+
+/* Creative layout for sections */
+.sections-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.main-section {
+    flex: 2;
+    min-width: 300px;
+}
+
+.side-sections {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Creative cards */
+.creative-card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.creative-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--light-blue));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.creative-card:hover::before {
+    transform: scaleX(1);
+}
+
+.creative-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-blue);
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.15);
+}
+
 .card-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .card-icon {
-    font-size: 32px;
-    filter: drop-shadow(0 0 8px currentColor);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
 }
 
 .card-title {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
-    text-shadow: 0 0 10px currentColor;
+    color: var(--text-light);
 }
 
-/* Card Content - Hidden by Default */
+/* Card content - creative reveal */
 .card-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
+    transition: all 0.6s ease-out;
 }
 
-.card.expanded .card-content {
-    max-height: 800px;
+.creative-card.expanded .card-content {
+    max-height: 1000px;
     opacity: 1;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
-/* Click Indicator */
-.click-hint {
-    text-align: center;
-    font-size: 12px;
-    color: #64748b;
-    margin-top: 10px;
-    opacity: 1;
-    transition: opacity 0.3s;
-}
-
-.card.expanded .click-hint {
-    opacity: 0;
-}
-
-/* About Section */
-.about .card-title {
-    color: var(--neon-blue);
-}
-
-.about .card-content p {
+/* About section specific */
+.about-text {
+    color: var(--text-gray);
     line-height: 1.8;
-    color: #cbd5e1;
-    font-size: 15px;
+    font-size: 16px;
 }
 
-/* Hobbies Section */
-.hobbies .card-title {
-    color: var(--neon-purple);
+.about-text p {
+    margin-bottom: 15px;
+}
+
+/* Hobbies grid */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .hobby-item {
-    margin-bottom: 18px;
-    padding: 12px;
-    background: rgba(168, 85, 247, 0.1);
-    border-left: 3px solid var(--neon-purple);
-    border-radius: 8px;
+    background-color: rgba(30, 41, 59, 0.7);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-blue);
+    transition: transform 0.3s ease;
+}
+
+.hobby-item:hover {
+    transform: translateX(5px);
 }
 
 .hobby-name {
-    font-size: 16px;
-    color: var(--neon-purple);
-    font-weight: 600;
-    margin-bottom: 5px;
+    font-size: 18px;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .hobby-desc {
     font-size: 14px;
-    color: #cbd5e1;
+    color: var(--text-gray);
     line-height: 1.6;
 }
 
-/* Interests/Likings Section */
-.likings .card-title {
-    color: var(--neon-pink);
-}
-
-.liking-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.tag {
-    padding: 10px 18px;
-    border-radius: 25px;
-    background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(168, 85, 247, 0.2));
-    border: 1px solid var(--neon-pink);
-    color: var(--neon-pink);
-    font-size: 14px;
-    box-shadow: 0 0 15px rgba(236, 72, 153, 0.3);
-    transition: all 0.3s;
-}
-
-.tag:hover {
-    background: var(--neon-pink);
-    color: #000;
-    box-shadow: 0 0 25px var(--neon-pink);
-}
-
-/* Favorites Section */
-.favorites .card-title {
-    color: var(--neon-orange);
-}
-
-.fav-list {
-    list-style: none;
-    line-height: 2;
-}
-
-.fav-list li {
-    padding: 8px 0;
-    color: #cbd5e1;
-    border-bottom: 1px solid rgba(249, 115, 22, 0.2);
-    transition: all 0.3s;
-}
-
-.fav-list li::before {
-    content: "★ ";
-    color: var(--neon-orange);
-    font-size: 16px;
-    margin-right: 8px;
-}
-
-.fav-list li:hover {
-    padding-left: 10px;
-    color: var(--neon-orange);
-}
-
-/* Social Links */
-.social .card-title {
-    color: var(--neon-green);
-}
-
-.social-links {
+/* Interests tags with creative layout */
+.interests-container {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    margin-top: 20px;
 }
 
-.social-links a {
-    padding: 12px 22px;
-    border-radius: 30px;
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(56, 189, 248, 0.1));
-    border: 2px solid var(--neon-green);
-    color: var(--neon-green);
-    text-decoration: none;
+.interest-tag {
+    padding: 10px 20px;
+    background-color: rgba(37, 99, 235, 0.1);
+    border: 1px solid var(--primary-blue);
+    color: var(--light-blue);
+    border-radius: 25px;
     font-size: 14px;
-    font-weight: 600;
-    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.social-links a:hover {
-    background: var(--neon-green);
-    color: #000;
-    box-shadow: 0 0 30px var(--neon-green);
-    transform: scale(1.05);
+.interest-tag:hover {
+    background-color: rgba(37, 99, 235, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+}
+
+/* Social links creative layout */
+.social-links-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-link {
+    flex: 1;
+    min-width: 150px;
+    padding: 18px;
+    background-color: rgba(30, 41, 59, 0.8);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: rgba(37, 99, 235, 0.1);
+    border-color: var(--primary-blue);
+    transform: translateY(-5px);
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(37, 99, 235, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.social-name {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+/* Details section */
+.details-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.detail-box {
+    flex: 1;
+    min-width: 150px;
+    padding: 20px;
+    background-color: rgba(30, 41, 59, 0.7);
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.detail-box:hover {
+    transform: translateY(-5px);
+    background-color: rgba(37, 99, 235, 0.1);
+}
+
+.detail-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: var(--primary-blue);
+}
+
+.detail-label {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-size: 16px;
+    color: var(--text-light);
+    font-weight: 500;
 }
 
 /* Footer */
 .footer {
-    grid-column: 1 / -1;
     text-align: center;
+    padding: 30px;
+    color: var(--text-gray);
     font-size: 14px;
-    color: #64748b;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(56, 189, 248, 0.2);
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
 }
 
-/* Animations */
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+/* Click hint animation */
+.click-hint {
+    text-align: center;
+    color: var(--primary-blue);
+    font-size: 14px;
+    margin-top: 15px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+    position: relative;
 }
 
-.card:not(.expanded) .click-hint {
-    animation: pulse 2s infinite;
+.creative-card.expanded .click-hint {
+    opacity: 0;
+}
+
+.click-hint::after {
+    content: "↓";
+    display: inline-block;
+    margin-left: 5px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-5px);}
+    60% {transform: translateY(-3px);}
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .creative-header {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .subtitle::before {
+        display: none;
+    }
+    
+    .tagline {
+        border-left: none;
+        border-top: 3px solid var(--primary-blue);
+        border-radius: 10px 10px 0 0;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .name-title {
+        font-size: 36px;
+    }
+    
+    .profile-img {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .image-frame {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .sections-container {
+        flex-direction: column;
+    }
 }
 </style>
 </head>
 
 <body>
+    <!-- Background decorative elements -->
+    <div class="bg-elements">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+        <div class="bg-circle circle-3"></div>
+    </div>
 
-<div class="dashboard">
+    <div class="container">
+        <!-- Creative Header -->
+        <div class="creative-header">
+            <div class="profile-image-container">
+                <div class="image-frame"></div>
+                <img src="Me.jpeg" alt="Pravat Sahu" class="profile-img">
+            </div>
+            
+            <div class="header-content">
+                <h1 class="name-title">Pravat Sahu</h1>
+                <p class="subtitle">Student • Traveler • Creative Developer</p>
+                <p class="tagline">Exploring the intersection of technology, travel, and personal growth. Building digital experiences while discovering the world.</p>
+                
+                <!-- Quick details -->
+                <div class="details-section">
+                    <div class="detail-box">
+                        <div class="detail-icon">📍</div>
+                        <div class="detail-label">Location</div>
+                        <div class="detail-value">Kharagpur, IN</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-icon">🎓</div>
+                        <div class="detail-label">Education</div>
+                        <div class="detail-value">BCA Student</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-icon">💻</div>
+                        <div class="detail-label">Focus</div>
+                        <div class="detail-value">Web Development</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-icon">🌟</div>
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value">Building & Learning</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Profile -->
-    <div class="card profile" onclick="toggleCard(this)">
-        <img src="Me.jpeg" alt="Profile">
-        <h1>Pravat Sahu</h1>
-        <p>Traveller | Devotee | All-Rounder</p>
-        <p class="tagline">✨Live the way you want!✨</p>
-        <div class="click-hint">Click to see more</div>
+        <!-- Creative Sections Layout -->
+        <div class="sections-container">
+            <div class="main-section">
+                <!-- About Section -->
+                <div class="creative-card about-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <div class="card-icon">👋</div>
+                        <div class="card-title">Personal Philosophy</div>
+                    </div>
+                    <div class="click-hint">Click to read more</div>
+                    <div class="card-content">
+                        <div class="about-text">
+                            <p>I'm a student and developer with a passion for creating meaningful digital experiences while exploring the world around me. My journey is guided by curiosity and a belief in continuous growth.</p>
+                            <p>I value authentic connections and meaningful solitude, finding that balance between social engagement and personal reflection leads to the most growth. Technology, for me, is a tool for expression and connection.</p>
+                            <p>Currently pursuing my Bachelor's in Computer Applications, I'm focused on developing skills that bridge technical expertise with creative vision, always looking for new challenges and learning opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hobbies & Activities -->
+                <div class="creative-card hobbies-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <div class="card-title">Passions & Activities</div>
+                    </div>
+                    <div class="click-hint">Click to explore</div>
+                    <div class="card-content">
+                        <div class="hobbies-grid">
+                            <div class="hobby-item">
+                                <div class="hobby-name">🏸 Sports & Fitness</div>
+                                <div class="hobby-desc">Channeling energy through badminton and physical activities for mental clarity and wellbeing</div>
+                            </div>
+                            <div class="hobby-item">
+                                <div class="hobby-name">✈️ Travel Exploration</div>
+                                <div class="hobby-desc">Discovering new cultures and landscapes to expand perspectives</div>
+                            </div>
+                            <div class="hobby-item">
+                                <div class="hobby-name">💻 Creative Coding</div>
+                                <div class="hobby-desc">Building interactive web experiences and exploring new technologies</div>
+                            </div>
+                            <div class="hobby-item">
+                                <div class="hobby-name">🎵 Musical Expression</div>
+                                <div class="hobby-desc">Using music as a medium for reflection and creative expression</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-sections">
+                <!-- Interests -->
+                <div class="creative-card interests-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <div class="card-icon">❤️</div>
+                        <div class="card-title">Creative Interests</div>
+                    </div>
+                    <div class="click-hint">Click to view</div>
+                    <div class="card-content">
+                        <div class="interests-container">
+                            <div class="interest-tag">Web Development</div>
+                            <div class="interest-tag">UI/UX Design</div>
+                            <div class="interest-tag">Photography</div>
+                            <div class="interest-tag">Outdoor Adventures</div>
+                            <div class="interest-tag">Motorcycle Culture</div>
+                            <div class="interest-tag">Spiritual Growth</div>
+                            <div class="interest-tag">Music Discovery</div>
+                            <div class="interest-tag">Personal Development</div>
+                            <div class="interest-tag">Tech Innovation</div>
+                            <div class="interest-tag">Cultural Exploration</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connect Section -->
+                <div class="creative-card connect-card" onclick="toggleCard(this)">
+                    <div class="card-header">
+                        <div class="card-icon">🌐</div>
+                        <div class="card-title">Let's Connect</div>
+                    </div>
+                    <div class="click-hint">Click to view links</div>
+                    <div class="card-content">
+                        <div class="social-links-container">
+                            <a href="https://www.instagram.com/prxvxt_05?igsh=NWk2aGszMG96cTc4" class="social-link" onclick="event.stopPropagation()" target="_blank">
+                                <div class="social-icon">📷</div>
+                                <div class="social-name">Instagram</div>
+                            </a>
+                            <a href="https://x.com/pravat_sahu1512" class="social-link" onclick="event.stopPropagation()" target="_blank">
+                                <div class="social-icon">🐦</div>
+                                <div class="social-name">Twitter</div>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=100034890069879" class="social-link" onclick="event.stopPropagation()" target="_blank">
+                                <div class="social-icon">📘</div>
+                                <div class="social-name">Facebook</div>
+                            </a>
+                            <a href="https://www.linkedin.com/in/pravat-sahu-505793344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link" onclick="event.stopPropagation()" target="_blank">
+                                <div class="social-icon">💼</div>
+                                <div class="social-name">LinkedIn</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            © 2025 Pravat Sahu | Creative Portfolio | Crafted with purpose
+        </div>
+    </div>
+
+    <script>
+    function toggleCard(card) {
+        // Toggle the clicked card
+        card.classList.toggle('expanded');
         
-        <div class="profile-details">
-            <div class="profile-info">
-                <div class="info-item">
-                    <span class="info-icon">📍</span>
-                    <span class="info-label">Location:</span>
-                    <span class="info-value">Kharagpur, India</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-icon">🎂</span>
-                    <span class="info-label">Birthday:</span>
-                    <span class="info-value">15th December</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-icon">🎓</span>
-                    <span class="info-label">Education:</span>
-                    <span class="info-value">Pursuing BCA</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-icon">💼</span>
-                    <span class="info-label">Status:</span>
-                    <span class="info-value">Student</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- About -->
-    <div class="card about" onclick="toggleCard(this)">
-        <div class="card-header">
-            <div class="card-icon">👋</div>
-            <div class="card-title">About Me</div>
-        </div>
-        <div class="click-hint">Click to explore</div>
-        <div class="card-content">
-            <p>
-                Hey! I'm someone who loves exploring new places and embracing every experience that life has to offer. 
-                I believe in destiny, I enjoy the best of both worlds, valuing human connection while also prioritizing self-care through solitude.
-                People often find me rude but my closed ones knows the reason behind it. Love would neither find me nor I am into it!
-                Yeah! I am old school types- I love spending time in temples offering prayers and enjoying bhajans.
-                I believe in "JO HOTA HAI ACHHE KE LIYE HOTA HAI"!  
-            </p>
-        </div>
-    </div>
-
-    <!-- Hobbies -->
-    <div class="card hobbies" onclick="toggleCard(this)">
-        <div class="card-header">
-            <div class="card-icon">🏏</div>
-            <div class="card-title">My Hobbies</div>
-        </div>
-        <div class="click-hint">Click to explore</div>
-        <div class="card-content">
-            <div class="hobby-item">
-                <div class="hobby-name">🏸 Sporting</div>
-                <div class="hobby-desc">Exhaling all the worries of life in the few hours of sweating</div>
-            </div>
-            <div class="hobby-item">
-                <div class="hobby-name">🎵 Music</div>
-                <div class="hobby-desc">Usually express my thoughts through music</div>
-            </div>
-            <div class="hobby-item">
-                <div class="hobby-name">✈️ Traveling</div>
-                <div class="hobby-desc">Exploring new places and collecting unforgettable memories</div>
-            </div>
-            <div class="hobby-item">
-                <div class="hobby-name">🏍️ Riding</div>
-                <div class="hobby-desc">Leaving all the stress behind and enjoying the freedom of the open road</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Likings/Interests -->
-    <div class="card likings" onclick="toggleCard(this)">
-        <div class="card-header">
-            <div class="card-icon">❤️</div>
-            <div class="card-title">Things I Love</div>
-        </div>
-        <div class="click-hint">Click to explore</div>
-        <div class="card-content">
-            <div class="liking-tags">
-                <div class="tag">🌙 Night Vibes</div>
-                <div class="tag">☕ Coffee</div>
-                <div class="tag">🏏 Sports</div>
-                <div class="tag">🏍️ Bike Rides</div>
-                <div class="tag">🏔️ Mountains</div>
-                <div class="tag">📷 Photography</div>
-                <div class="tag">🎧 Music</div>
-                <div class="tag">🌟 Stargazing</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Favorites -->
-    <div class="card favorites" onclick="toggleCard(this)">
-        <div class="card-header">
-            <div class="card-icon">⭐</div>
-            <div class="card-title">My Favorites</div>
-        </div>
-        <div class="click-hint">Click to explore</div>
-        <div class="card-content">
-            <ul class="fav-list">
-                <li>Favorite Color: Orange</li>
-                <li>Favorite Season: Winter</li>
-                <li>Favorite Food: Chole Bhature</li>
-                <li>Favorite Movie Genre: Coming-of-Age</li>
-                <li>Favorite Time: Late Night</li>
-                <li>Favorite Quote: "Acceptance is better than Expectance!"</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Social -->
-    <div class="card social" onclick="toggleCard(this)">
-        <div class="card-header">
-            <div class="card-icon">🌐</div>
-            <div class="card-title">Let's Connect</div>
-        </div>
-        <div class="click-hint">Click to explore</div>
-        <div class="card-content">
-            <div class="social-links">
-                <a href="https://www.instagram.com/prxvxt_05?igsh=NWk2aGszMG96cTc4" onclick="event.stopPropagation()">Instagram</a>
-                <a href="https://x.com/pravat_sahu1512" onclick="event.stopPropagation()">Twitter</a>
-                <a href="https://www.facebook.com/profile.php?id=100034890069879" onclick="event.stopPropagation()">Facebook</a>
-                <a href="https://www.linkedin.com/in/pravat-sahu-505793344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" onclick="event.stopPropagation()">LinkedIn</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        ✨ Made with passion by Pravat Sahu | 2025 ✨
-    </div>
-
-</div>
-
-<script>
-function toggleCard(card) {
-    card.classList.toggle('expanded');
-}
-
-// Optional: Close other cards when opening a new one
-function toggleCardExclusive(card) {
-    const allCards = document.querySelectorAll('.card');
-    const wasExpanded = card.classList.contains('expanded');
-    
-    allCards.forEach(c => c.classList.remove('expanded'));
-    
-    if (!wasExpanded) {
-        card.classList.add('expanded');
+        // Close other cards when opening a new one for cleaner UI
+        if (card.classList.contains('expanded')) {
+            const allCards = document.querySelectorAll('.creative-card');
+            allCards.forEach(c => {
+                if (c !== card && c.classList.contains('expanded')) {
+                    c.classList.remove('expanded');
+                }
+            });
+        }
     }
-}
-</script>
 
+    // Add some interactivity for social links
+    document.querySelectorAll('.social-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // You could add analytics tracking here
+            console.log('Social link clicked:', this.href);
+        });
+    });
+
+    // Add subtle parallax effect to background circles
+    document.addEventListener('mousemove', (e) => {
+        const circles = document.querySelectorAll('.bg-circle');
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        circles.forEach((circle, index) => {
+            const speed = 0.05 + (index * 0.02);
+            const x = (mouseX * speed * 100);
+            const y = (mouseY * speed * 100);
+            
+            circle.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    });
+    </script>
 </body>
 </html>
